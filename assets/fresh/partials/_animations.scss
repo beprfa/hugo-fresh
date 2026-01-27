@@ -9,18 +9,33 @@ General Keyframes animations
     -webkit-animation-fill-mode: both;
 }
 
-//Delays
+// Duration modifiers
+.animated.duration-fast {
+    animation-duration: 0.3s;
+}
+
+.animated.duration-slow {
+    animation-duration: 0.8s;
+}
+
+// Extended delays for staggered animations (0.1s increments)
+.delay-0 {
+    animation-delay: 0s;
+}
 .delay-1 {
-    animation-delay: .25s;
+    animation-delay: 0.1s;
 }
 .delay-2 {
-    animation-delay: .5s;
+    animation-delay: 0.2s;
 }
 .delay-3 {
-    animation-delay: .75s;
+    animation-delay: 0.3s;
 }
 .delay-4 {
-    animation-delay: 1s;
+    animation-delay: 0.4s;
+}
+.delay-5 {
+    animation-delay: 0.5s;
 }
 
 // FADE IN LEFT 
@@ -105,4 +120,75 @@ General Keyframes animations
   25% { transform: scale(0.9, 1.1); }
   50% { transform: scale(1.1, 0.9); }
   75% { transform: scale(0.95, 1.05); }
+}
+
+// FADE IN RIGHT (element slides in from right)
+@keyframes fadeInRight {
+    from {
+        transform: translate3d(-20px, 0, 0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+.preFadeInRight {
+    opacity: 0;
+}
+
+.fadeInRight {
+    opacity: 0;
+    animation-name: fadeInRight;
+}
+
+// ZOOM IN (scale up with opacity)
+@keyframes zoomIn {
+    from {
+        transform: scale3d(0.9, 0.9, 0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+    }
+}
+
+.preZoomIn {
+    opacity: 0;
+}
+
+.zoomIn {
+    opacity: 0;
+    animation-name: zoomIn;
+}
+
+// FADE IN (opacity only, no movement)
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.preFadeIn {
+    opacity: 0;
+}
+
+.fadeIn {
+    opacity: 0;
+    animation-name: fadeIn;
+}
+
+// Respect reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+    .animated,
+    .revealOnScroll {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }

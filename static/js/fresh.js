@@ -76,16 +76,22 @@ $(document).ready(function(){
                 offsetTop = $this.offset().top;
 
             if (scrolled + win_height_padded > offsetTop) {
-                if ($this.data('timeout')) {
+                var delay = $this.data('delay') || $this.data('timeout') || 0;
+                if (delay) {
                     window.setTimeout(function(){
                         $this.addClass('animated ' + $this.data('animation'));
-                    }, parseInt($this.data('timeout'),10));
+                    }, parseInt(delay, 10));
                 } else {
                     $this.addClass('animated ' + $this.data('animation'));
                 }
             }
         });
     }
+
+    // Trigger revealOnScroll on page load for above-fold content (Phase 3)
+    setTimeout(function() {
+        revealOnScroll();
+    }, 100);
 
     // Back to Top button behaviour
     var pxShow = 600;
